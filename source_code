@@ -1,0 +1,96 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+void merge(int array1[], int length1, int array2[], int length2, int result[]);
+
+int main()
+{
+	int length1;
+	scanf("%d", &length1);
+	int length2;
+	scanf("%d", &length2);
+
+	int *array1 = (int*)malloc(sizeof(int)*length1);
+	int *array2 = (int*)malloc(sizeof(int)*length2);
+	int *result = (int*)malloc(sizeof(int)*(length1+length2));
+	
+	int i;
+	
+	for( i = 0; i < length1; i++)
+	{
+		scanf("%d", &array1[i]);
+
+
+	} 
+	for( i = 0; i < length2; i++)
+	{
+		scanf("%d", &array2[i]);
+
+	}
+	
+	printf("List 1: ");
+	for( i = 0; i < length1; i++)
+	{
+		printf("%d ", array1[i]);
+
+	}
+	printf("\n");
+
+	printf("List 2: ");
+	for( i = 0; i < length2; i++)
+	{
+		printf("%d ", array2[i]);
+
+	}
+	printf("\n");
+
+	merge(array1,length1,array2,length2,result);
+	
+	printf("Merged list: ");
+	for( i = 0; i < (length1+length2); i++)
+	{
+		printf("%d ", result[i]);
+
+	}
+	free(array1);
+	free(array2);
+	free(result);	
+	
+return 0;
+}
+
+void merge(int array1[], int length1, int array2[], int length2, int result[])
+{
+	int i = 0;
+	int j = 0;
+	int k = 0;
+
+	while(i < length1 && j < length2)
+	{
+		if(array1[i] < array2[j])
+		{
+			result[k] = array1[i];
+			i++;
+			k++;		
+		}
+		else
+		{	
+			result[k] = array2[j];
+			j++;
+			k++;
+		}
+	}
+	while ( i < length1 )
+	{
+		result[k] = array1[i];
+		i++;
+		k++;
+	}
+	while ( j < length2 )
+	{
+		result[k] = array2[j];
+		j++;
+		k++;
+	}
+}
